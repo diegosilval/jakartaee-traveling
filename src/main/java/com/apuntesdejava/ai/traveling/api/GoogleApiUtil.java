@@ -15,15 +15,21 @@
  */
 package com.apuntesdejava.ai.traveling.api;
 
+import java.util.logging.Level;
 import org.eclipse.microprofile.config.ConfigProvider;
 
+import java.util.logging.Logger;
+
 /**
- *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
 public class GoogleApiUtil {
 
+    private static final Logger LOGGER = Logger.getLogger(GoogleApiUtil.class.getName());
+
     public static String getApiKey() {
-        return ConfigProvider.getConfig().getValue("google.api.key", String.class);
+        var apiKey = ConfigProvider.getConfig().getValue("google.api.key", String.class);
+        LOGGER.log(Level.INFO, "apiKey:{0}", apiKey);
+        return apiKey;
     }
 }

@@ -19,11 +19,11 @@ import com.apuntesdejava.ai.traveling.api.GenerativeLanguageApi;
 import com.apuntesdejava.ai.traveling.api.request.GenerateContentRequest;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-
-import java.util.logging.Logger;
-
 import jakarta.json.JsonObject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 /**
  * @author Diego Silva <diego.silva at apuntesdejava.com>
@@ -40,21 +40,21 @@ public class GenerateTextService {
     @Inject
     private String apiKey;
 
-    @ConfigProperty(name = "generate.content.template")
-    @Inject
-    private String generateContentTemplate;
-
     public String getTextGenerate(String displayName, String location) {
-        String prompt = generateContentTemplate.formatted(displayName, location);
+        var messages = ResourceBundle.getBundle("messages");
+        String prompt = messages.getString("generate.content.template").formatted(displayName, location);
         try (var response = generativeLanguageApi.generateContent(apiKey, new GenerateContentRequest(prompt))) {
             var jsonResponse = response.readEntity(JsonObject.class);
             LOGGER.info("IA: %s -> %s".formatted(prompt, jsonResponse));
-            return jsonResponse.getJsonArray("candidates")
-                    .getJsonObject(0)
-                    .getJsonObject("content")
-                    .getJsonArray("parts")
-                    .getJsonObject(0)
-                    .getString("text");
+            var aCandidate = jsonResponse.getJsonArray("candidates")
+                    .getJsonObject(0);
+            if (aCandidate.containsKey("content")) {
+                return aCandidate.getJsonObject("content")
+                        .getJsonArray("parts")
+                        .getJsonObject(0)
+                        .getString("text");
+            }
+            return "";
         }
     }
 }

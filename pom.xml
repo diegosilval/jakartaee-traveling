@@ -18,7 +18,7 @@
         <payara.url>https://repo1.maven.org/maven2/fish/payara/distributions/payara/6.2024.10/payara-6.2024.10.zip</payara.url>
         <payara.home>payara6</payara.home>
     </properties>
-    
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -66,7 +66,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.1</version>
@@ -94,7 +94,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <repositories>
         <repository>
             <id>payara-nexus-artifacts</id>
@@ -107,8 +107,8 @@
             </snapshots>
         </repository>
     </repositories>
-    
-    
+
+
     <profiles>
         <profile>
             <id>container</id>
@@ -144,6 +144,11 @@
                             <images>
                                 <image>
                                     <name>${project.artifactId}:${project.version}</name>
+                                    <run>
+                                        <env>
+                                            <GOOGLE_API_KEY>${env.GOOGLE_API_KEY}</GOOGLE_API_KEY>
+                                        </env>
+                                    </run>
                                 </image>
                             </images>
                         </configuration>
