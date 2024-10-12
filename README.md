@@ -28,7 +28,7 @@ And the APIs that need to be activated are the following:
 
 Then add the environment variable called `GOOGLE_API_KEY` with the value obtained from [APIs & Services](https://console.cloud.google.com/apis/credentials)
 
-This variable will be used in the  [`pom.xml`](pom.xml) file, in the  `docker-mave-plugin` variables configuration, and [`Dockerfile`](Dockerfile) file
+This variable will be used in the  [`pom.xml`](pom.xml) file, in the  `docker-mave-plugin` variables configuration. Edit  [`Dockerfile`](Dockerfile) file and set  `GOOGLE_API_KEY` variable
 
 ## Running the Application
 
