@@ -17,6 +17,7 @@
         <cargo.version>1.10.15</cargo.version>
         <payara.url>https://repo1.maven.org/maven2/fish/payara/distributions/payara/6.2024.10/payara-6.2024.10.zip</payara.url>
         <payara.home>payara6</payara.home>
+        <docker.buildArg.GOOGLE_API_KEY>${env.GOOGLE_API_KEY}</docker.buildArg.GOOGLE_API_KEY>
     </properties>
 
     <dependencyManagement>
