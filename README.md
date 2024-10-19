@@ -66,6 +66,11 @@ docker run -p 8080:8080 traveling:${project.version}
 ```
 Replace traveling:${project.version} with the actual image name and tag.
 
+## Technologies used
+- Jakarta EE API
+- Microprofile
+- Google Maps API
+
 That's it! You have successfully built and run the application in a Docker container.
 
 
