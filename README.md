@@ -68,7 +68,13 @@ Replace traveling:${project.version} with the actual image name and tag.
 
 ## Technologies used
 - Jakarta EE API
+  - Jakarta Faces
+  - Jakarta Contexts and Dependency Injection
+  - Jakarta Dependency Injection
+  - Jakarta RESTful Web Services
 - Microprofile
+  - Rest Client (To call Google Maps and Gemini REST services)
+  - Config
 - Google Maps API
 
 That's it! You have successfully built and run the application in a Docker container.
