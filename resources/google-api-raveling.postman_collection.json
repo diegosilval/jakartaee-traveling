@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "8a6c7dbb-0bdd-4e88-b797-4330210c288f",
+		"name": "Google APIs for Traveling",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "112251"
+	},
+	"item": [
+		{
+			"name": "RoutesApi",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Goog-Api-Key",
+						"value": "{{vault:GOOGLE_API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Goog-FieldMask",
+						"value": "*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"origin\": {\r\n        \"address\": \"Lima,Peru\" \r\n    },\r\n    \"destination\": {\r\n        \"address\": \"Arequipa,Peru\" \r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://routes.googleapis.com/directions/v2:computeRoutes",
+					"protocol": "https",
+					"host": [
+						"routes",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"directions",
+						"v2:computeRoutes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PlacesApi",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Goog-Api-Key",
+						"value": "{{vault:GOOGLE_API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Goog-FieldMask",
+						"value": "places.displayName,places.name,places.id,places.types,places.nationalPhoneNumber,places.internationalPhoneNumber,places.formattedAddress,places.location,places.viewport,places.rating,places.googleMapsUri,places.websiteUri,places.iconMaskBaseUri",
+						"type": "text"
+					},
+					{
+						"key": "X-Goog-FieldMask",
+						"value": "*",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"includedTypes\": [\r\n        \"museum\",\r\n        \"tourist_attraction\",\r\n        \"cultural_center\"\r\n    ],\r\n    \"maxResultCount\": 10,\r\n    \"locationRestriction\": {\r\n        \"circle\": {\r\n            \"center\": {\r\n                \"latitude\": -16.4056946,\r\n                \"longitude\": -71.5400891\r\n            },\r\n            \"radius\": 4000\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://places.googleapis.com/v1/places:searchNearby",
+					"protocol": "https",
+					"host": [
+						"places",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"places:searchNearby"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GenerativeLanguageApi",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contents\": [\r\n        {\r\n            \"parts\": [\r\n                {\r\n                    \"text\": \"Dame un resumen atractivo o turístico de lo que puedo encontrar en Plaza de Yanahuara que se encuentra en Alameda San Lázaro 101, Arequipa 04001, Peru\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={{vault:GOOGLE_API_KEY}}",
+					"protocol": "https",
+					"host": [
+						"generativelanguage",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1beta",
+						"models",
+						"gemini-1.5-flash:generateContent"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{vault:GOOGLE_API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PROJECT_ID",
+			"value": "jakarta-ee-traveling",
+			"type": "string"
+		}
+	]
+}
