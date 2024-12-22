@@ -79,5 +79,8 @@ Replace traveling:${project.version} with the actual image name and tag.
 
 That's it! You have successfully built and run the application in a Docker container.
 
+## Additional resource
+
+- [Postman Collection - Google APIs](resources/google-api-raveling.postman_collection.json)
 
 
